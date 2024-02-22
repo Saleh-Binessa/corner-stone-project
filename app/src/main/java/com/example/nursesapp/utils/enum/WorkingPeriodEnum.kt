@@ -5,5 +5,5 @@ import java.lang.reflect.Type
 enum class WorkingPeriodEnum: Type {
     AM,
     PM,
-    Full_Time
+    FullTime
 }

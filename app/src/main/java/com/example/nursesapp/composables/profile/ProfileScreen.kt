@@ -44,13 +44,13 @@ import java.util.Date
 import java.util.Locale
 
 @Composable
-fun ProfilePage(nurseViewModel: NurseViewModel, onUpdateProfileClick: () -> Unit) {
+fun ProfilePage(nurseViewModel: NurseViewModel, navToProfile: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
     ) {
         // Header with Wallet icon and balance
-        ProfileHeader(nurseViewModel, onUpdateProfileClick)
+        ProfileHeader(nurseViewModel)
 
         // Divider
         Divider(
@@ -76,7 +76,7 @@ fun ProfilePage(nurseViewModel: NurseViewModel, onUpdateProfileClick: () -> Unit
 
 
 @Composable
-fun ProfileHeader(nurseViewModel: NurseViewModel, onUpdateProfileClick: () -> Unit) {
+fun ProfileHeader(nurseViewModel: NurseViewModel) {
     Surface(
         color = MaterialTheme.colorScheme.primary,
         modifier = Modifier
@@ -108,6 +108,13 @@ fun ProfileHeader(nurseViewModel: NurseViewModel, onUpdateProfileClick: () -> Un
             Spacer(modifier = Modifier.height(60.dp))
 
             Text(
+                text = "Name: ${nurseViewModel.user?.name ?: null} ",
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
+            )
+
+            Text(
                 text = "Age: ${nurseViewModel.user?.age ?: null} ",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
@@ -122,30 +129,19 @@ fun ProfileHeader(nurseViewModel: NurseViewModel, onUpdateProfileClick: () -> Un
             )
 
             Text(
-                text = "Height: ${nurseViewModel.user?.height ?: null} ",
+                text = "Address: ${nurseViewModel.user?.address ?: null} ",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
             )
 
             Text(
-                text = "Weight: ${nurseViewModel.user?.weight ?: null} ",
+                text = "Medical Record: ${nurseViewModel.user?.medicalRecord ?: null} ",
                 color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 18.sp
             )
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Button(
-                onClick = { onUpdateProfileClick },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(ListItemDefaults.contentColor)
-            ) {
-                Text(text = "Edit Profile")
-            }
         }
-
     }
 }
 

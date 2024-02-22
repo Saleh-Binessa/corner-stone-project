@@ -62,35 +62,6 @@ fun BookingPage(nurseViewModel: NurseViewModel, onBookClick: () -> Unit) {
                 BookingItem(nurseViewModel, BookingDetails)
             }
         }
-        @Composable
-        fun BookingPage(nurseViewModel: NurseViewModel) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                // Header with Wallet icon and balance
-                BookingHeader(nurseViewModel)
-
-                // Divider
-                Divider(
-                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.1f),
-                    thickness = 1.dp,
-                    modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
-                )
-
-                // Transactions
-                LazyColumn(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.background)
-                ) {
-                    items(nurseViewModel.bookings ?: emptyList()) { BookingDetails ->
-                        BookingItem(nurseViewModel, BookingDetails)
-                    }
-                }
-
-            }
-        }
     }
 }
 
@@ -121,12 +92,12 @@ fun BookingHeader(nurseViewModel: NurseViewModel) {
             Spacer(modifier = Modifier.height(8.dp))
 
 
-            Text(
-                text = "Booking: ${nurseViewModel.bookings()}",
-                color = Color.White,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
-            )
+//            Text(
+//                text = "Booking: ${nurseViewModel.bookings()}",
+//                color = Color.White,
+//                fontWeight = FontWeight.Bold,
+//                fontSize = 18.sp
+//            )
         }
     }
 }

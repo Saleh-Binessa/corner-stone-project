@@ -29,16 +29,16 @@ import com.example.nursesapp.data.models.Nurse
 import com.example.nursesapp.ui.theme.Yellow
 import com.example.nursesapp.viewmodel.NurseViewModel
 
-@Composable
-fun DateOfBooking(nurseviewModel: NurseViewModel, onSpiciality: () -> Unit) {
-    LazyColumn(modifier = Modifier) {
-        val nurse = nurseviewModel.nurse
-        items(nurse) {
-            DateItem(nurseviewModel, onSpiciality)
-            Spacer(modifier = Modifier.height(20.dp))
-        }
-    }
-}
+//@Composable
+//fun DateOfBooking(nurseviewModel: NurseViewModel, onSpiciality: () -> Unit) {
+//    LazyColumn(modifier = Modifier) {
+//        val nurse = nurseviewModel.nurse
+//        items(nurse) {
+//            DateItem(nurseviewModel, onSpiciality)
+//            Spacer(modifier = Modifier.height(20.dp))
+//        }
+//    }
+//}
 
 @Composable
 fun DateItem(nurseviewModel: NurseViewModel = viewModel(), onDateClick: () -> Unit) {

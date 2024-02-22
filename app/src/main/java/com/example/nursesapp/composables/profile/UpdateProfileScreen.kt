@@ -55,14 +55,6 @@ fun updateProfileScreen(nurseViewModel: NurseViewModel, profile: ProfileDetails,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        Button(
-            onClick = {
-                onUpdateProfileClick.equals(nurseViewModel.updateProfile(username, password))
-            },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(ListItemDefaults.contentColor)
-        ) {
-            Text(text = "Update")
-        }
+
     }
 }

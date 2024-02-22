@@ -23,16 +23,16 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.nursesapp.ui.theme.Yellow
 import com.example.nursesapp.viewmodel.NurseViewModel
 
-@Composable
-fun SpecialityOfNurse(nurseviewModel: NurseViewModel, onWorkingPeriodClick: () -> Unit) {
-    LazyColumn(modifier = Modifier) {
-        val nurse = nurseviewModel.nurse
-        items(nurse) {
-           SpecialityItem(nurseviewModel, onWorkingPeriodClick)
-            Spacer(modifier = Modifier.height(20.dp))
-        }
-    }
-}
+//@Composable
+//fun SpecialityOfNurse(nurseviewModel: NurseViewModel, onWorkingPeriodClick: () -> Unit) {
+//    LazyColumn(modifier = Modifier) {
+//        val nurse = nurseviewModel.nurse
+//        items(nurse) {
+//           SpecialityItem(nurseviewModel, onWorkingPeriodClick)
+//            Spacer(modifier = Modifier.height(20.dp))
+//        }
+//    }
+//}
 
 @Composable
 fun SpecialityItem(nurseviewModel: NurseViewModel = viewModel(), onWorkingPeriodClick: () -> Unit) {

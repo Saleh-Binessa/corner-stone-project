@@ -25,13 +25,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.nursesapp.utils.Routes
 import com.example.nursesapp.viewmodel.NurseViewModel
 
 @Composable
 fun SignUpScreen(
-    nurseViewModel: NurseViewModel, onSignInClick: () -> Unit
+    nurseViewModel: NurseViewModel, navToNurses: () -> Unit
 
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,21 +50,29 @@ fun SignUpScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
         // double check
-        SignUpForm(NurseViewModel(),onSignInClick)
+        SignUpForm(NurseViewModel(),navToNurses)
 
         Spacer(modifier = Modifier.height(16.dp))
-        TextButton(onClick = onSignInClick) {
+        TextButton(onClick = navToNurses) {
             Text(text = "Already have an account? Sign In")
         }
     }
 }
 @Composable
-fun SignUpForm( nurseViewModel: NurseViewModel ,onSigninClick:() -> Unit
+fun SignUpForm( nurseViewModel: NurseViewModel, navigation: () -> Unit
 
 
 ) {
+    val navController: NavHostController = rememberNavController()
+
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var civilId by remember { mutableStateOf("") }
+    var name by remember { mutableStateOf("") }
+    var age by remember { mutableStateOf("") }
+    var gender by remember { mutableStateOf("") }
+    var address by remember { mutableStateOf("") }
+    var medicalRecord by remember { mutableStateOf("") }
     var image by remember { mutableStateOf("") }
 
     Column {
@@ -85,9 +97,47 @@ fun SignUpForm( nurseViewModel: NurseViewModel ,onSigninClick:() -> Unit
         )
         OutlinedTextField(
             colors = OutlinedTextFieldDefaults.colors(Color.White),
-            value = image,
-            onValueChange = { image = it },
-            label = { Text("Image URL") },
+            value = civilId,
+            onValueChange = { civilId = it },
+            label = { Text("Civil ID") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+
+        OutlinedTextField(
+            colors = OutlinedTextFieldDefaults.colors(Color.White),
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Full Name") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        OutlinedTextField(
+            colors = OutlinedTextFieldDefaults.colors(Color.White),
+            value = age,
+            onValueChange = { age = it },
+            label = { Text("Age") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+        OutlinedTextField(
+            colors = OutlinedTextFieldDefaults.colors(Color.White),
+            value = address,
+            onValueChange = { address = it },
+            label = { Text("Address") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+        )
+
+        OutlinedTextField(
+            colors = OutlinedTextFieldDefaults.colors(Color.White),
+            value = medicalRecord,
+            onValueChange = { medicalRecord = it },
+            label = { Text("Medical Record") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
@@ -96,7 +146,8 @@ fun SignUpForm( nurseViewModel: NurseViewModel ,onSigninClick:() -> Unit
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { nurseViewModel.signup(username, password, image,onSigninClick) },
+            onClick = { nurseViewModel.signup(username, password, name, civilId, age, gender, address, medicalRecord,
+                { navController.navigate(Routes.nursesRoute) }) },
             modifier = Modifier.fillMaxWidth(),colors = ButtonDefaults.buttonColors(ListItemDefaults.contentColor)
         ) {
             Text(text = "Sign Up")

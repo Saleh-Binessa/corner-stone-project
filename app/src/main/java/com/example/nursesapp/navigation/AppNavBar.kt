@@ -1,10 +1,6 @@
 package com.example.nursesapp.navigation
 
-import android.provider.ContactsContract.Profile
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBox
-import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -20,12 +16,11 @@ import com.example.nursesapp.composables.booking.BookingPage
 import com.example.nursesapp.composables.booking.NursesListScreen
 import com.example.nursesapp.composables.profile.ProfilePage
 import com.example.nursesapp.composables.profile.updateProfileScreen
-import com.example.nursesapp.data.profile.ProfileDetails
+import com.example.nursesapp.repository.NurseRepo
 import com.example.nursesapp.utils.Routes
 import com.example.nursesapp.viewmodel.NurseViewModel
-
 @Composable
-fun AppFrontPage(nurseViewModel: NurseViewModel = viewModel(),) {
+fun AppNavBar(nurseViewModel: NurseViewModel= viewModel()) {
     val navController = rememberNavController()
 
     Scaffold(bottomBar = {
@@ -56,9 +51,9 @@ fun AppFrontPage(nurseViewModel: NurseViewModel = viewModel(),) {
         ) {
 
             composable(Routes.nursesRoute) {
-                    NursesListScreen(nurseViewModel, onNursesClick = {
-                        navController.navigate(Routes.nursesRoute)
-                    })
+                NursesListScreen(NurseRepo.dummyNursesList,nurseViewModel, navigatToBokings = {
+                    navController.navigate(Routes.nursesRoute)
+                })
             }
 
             composable(Routes.bookingsRoute) {
@@ -68,14 +63,8 @@ fun AppFrontPage(nurseViewModel: NurseViewModel = viewModel(),) {
             }
 
             composable(Routes.profileRoute) {
-                ProfilePage(nurseViewModel,onUpdateProfileClick = {navController.navigate(Routes.updateProfileRoute)})
+                ProfilePage(nurseViewModel, navToProfile = {navController.navigate(Routes.profileRoute)})
             }
-            composable(Routes.updateProfileRoute) {
-                updateProfileScreen(nurseViewModel, ProfileDetails("","",0,0.0,0.0,null),onUpdateProfileClick = {
-                    navController.navigate(Routes.updateProfileRoute)
-                })
             }
         }
     }
-}
-

@@ -26,37 +26,28 @@ interface NurseApiService {
     @POST(Constants.signinEndpoint)
     suspend fun signin(@Body user: User): Response<TokenResponse>
 
-    @PUT(Constants.dateEndpoint)
-    suspend fun selectDate(
-        @Header(Constants.authorization) token: String?,
-        @Body dateChange: DateChange
-    ): Response<Unit>
+//    @PUT(Constants.dateEndpoint)
+//    suspend fun selectDate(
+//        @Header(Constants.authorization) token: String?,
+//        @Body dateChange: DateChange
+//    ): Response<Unit>
 
     @PUT(Constants.specialityEndpoint)
     suspend fun selectSpeciality(
-        @Header(Constants.authorization) token: String?,
+        @Header(Constants.specialityEndpoint) token: String?,
         @Body specialityEnum: EnumEntries<SpecialityEnum>
     ): Response<Unit>
 
     @GET(Constants.showbookingEndpoint)
-    suspend fun Bookings(@Header(Constants.authorization) token: String?): Response<List<BookingDetails>>
+    suspend fun Bookings(@Header(Constants.getAllBookingDetailsEndpoints) token: String?): Response<List<BookingDetails>>
 
-    @PUT(Constants.updateProfileEndpoints)
-    suspend fun updateProfile(@Header(Constants.authorization) token: String?,
-                              @Body user: User
-    ): Response<Unit>
 
-    @GET(Constants.nursesEndpoint)
-    suspend fun getAllNurses(@Header(Constants.authorization) token: String?): Response<List<Nurse>>
+    @GET(Constants.allNursesEndpoint)
+    suspend fun getAllNurses(@Header(Constants.allNursesEndpoint) token: String?): Response<List<Nurse>>
 
-    @POST("${Constants.periodEndpoint}/{period}")
-    suspend fun period(@Path("period") period: Period,
-                       @Header(Constants.authorization) token: String?,
-                       @Body workingPeriodEnum: EnumEntries<WorkingPeriodEnum>
-    ): Response<Unit>
 
     @GET(Constants.showProfileEndpoint)
-    suspend fun showProfile(@Header(Constants.authorization) token: String?): Response<User>
+    suspend fun showProfile(@Header(Constants.showProfileEndpoint) token: String?): Response<User>
 
     fun period(token: String?, workingPeriodEnum: EnumEntries<WorkingPeriodEnum>): Response<Unit>
 
