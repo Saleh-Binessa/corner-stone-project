@@ -33,16 +33,17 @@ fun AppNav() {
         composable(Routes.signupRoute) {
             SignUpScreen(
                 nurseViewModel = nurseViewModel,
-                navToNurses = { navController.navigate(Routes.nursesRoute) },
-
+                navToNurses = { navController.navigate(Routes.homeRoute) }
                 )
         }
+
         composable(Routes.nursesRoute) {
             NursesListScreen(
                 NurseRepo.dummyNursesList,
                 nurseViewModel,
                 navigatToBokings = { navController.navigate(Routes.bookingsRoute) })
         }
+
         composable(Routes.signinRoute) {
             SignInScreen(
                 nurseViewModel = nurseViewModel,
@@ -53,10 +54,6 @@ fun AppNav() {
                     navController.navigate(Routes.homeRoute)
                 }
             )
-        }
-
-        composable(Routes.nursesRoute) {
-            AppNavBar(nurseViewModel = nurseViewModel)
         }
 
         composable(Routes.homeRoute) {

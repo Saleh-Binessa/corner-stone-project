@@ -32,10 +32,7 @@ import com.example.nursesapp.viewmodel.NurseViewModel
 
 @Composable
 fun SignUpScreen(
-    nurseViewModel: NurseViewModel, navToNurses: () -> Unit
-
-) {
-
+    nurseViewModel: NurseViewModel, navToNurses: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,10 +44,10 @@ fun SignUpScreen(
 
         Text(text = "Bank App", style = MaterialTheme.typography.headlineMedium,color =  Color(0xFF9AD14D))
 
-
         Spacer(modifier = Modifier.height(16.dp))
+
         // double check
-        SignUpForm(NurseViewModel(),navToNurses)
+        SignUpForm(nurseViewModel, navToNurses)
 
         Spacer(modifier = Modifier.height(16.dp))
         TextButton(onClick = navToNurses) {
@@ -59,12 +56,7 @@ fun SignUpScreen(
     }
 }
 @Composable
-fun SignUpForm( nurseViewModel: NurseViewModel, navigation: () -> Unit
-
-
-) {
-    val navController: NavHostController = rememberNavController()
-
+fun SignUpForm( nurseViewModel: NurseViewModel, navigation: () -> Unit) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var civilId by remember { mutableStateOf("") }
@@ -147,7 +139,7 @@ fun SignUpForm( nurseViewModel: NurseViewModel, navigation: () -> Unit
 
         Button(
             onClick = { nurseViewModel.signup(username, password, name, civilId, age, gender, address, medicalRecord,
-                { navController.navigate(Routes.nursesRoute) }) },
+                { navigation() }) },
             modifier = Modifier.fillMaxWidth(),colors = ButtonDefaults.buttonColors(ListItemDefaults.contentColor)
         ) {
             Text(text = "Sign Up")
