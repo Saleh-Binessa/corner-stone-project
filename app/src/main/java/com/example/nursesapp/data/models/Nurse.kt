@@ -6,10 +6,10 @@ import java.lang.reflect.Type
 data class Nurse(
     val id: Long,
     val name: String,
-    val age: Int,
+    val price: String,
     val specialized: Type,
-    val image: String,
+    val rating: Int,
+    val image: Int,
     val gender: Type,
     val workingTime: Type,
-    var token: String?
 )

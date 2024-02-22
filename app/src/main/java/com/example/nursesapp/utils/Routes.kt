@@ -1,6 +1,6 @@
 package com.example.nursesapp.utils
 
-class Routes {
+sealed class Routes {
     companion object {
         val homeRoute = "homeRoute"
         const val nursesRoute = "nursesRoute"
@@ -14,15 +14,3 @@ class Routes {
         const val updateProfileRoute = "updateProfileRoute"
     }
 }
-
-//const val dateEndpoint = "date"
-//const val spcialityEndpoint = "speciality"
-//const val periodEndpoint = "period"
-//const val nursesEndpoint = "nurses"
-//const val signupEndpoint = "signup"
-//const val signinEndpoint = "signin"
-//const val authorization = "Authorization"
-//const val bookingsEndpoint = "booking"
-//const val showProfileEndpoint = "profile"
-//const val updateProfileEndpoints = "update Profile"
-//}

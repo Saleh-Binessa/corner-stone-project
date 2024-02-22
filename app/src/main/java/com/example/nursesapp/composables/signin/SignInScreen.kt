@@ -25,6 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.nursesapp.utils.Routes
 import com.example.nursesapp.viewmodel.NurseViewModel
 
 @Composable
@@ -45,7 +48,7 @@ fun SignInScreen(
 
 
         Spacer(modifier = Modifier.height(16.dp))
-        SignInForm(nurseViewModel, onSignUpClick)
+        SignInForm(nurseViewModel, navigateToHome)
 
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -60,6 +63,9 @@ fun SignInScreen(
 fun SignInForm(nurseViewModel: NurseViewModel, onSigninClick: () -> Unit) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    val navController: NavHostController = rememberNavController()
+
 
     Column {
         OutlinedTextField(
@@ -88,9 +94,7 @@ fun SignInForm(nurseViewModel: NurseViewModel, onSigninClick: () -> Unit) {
             onSigninClick()
 
         Button(
-            onClick = {
-                nurseViewModel.signin(username, password)
-            },
+            onClick = { nurseViewModel.signin(username, password, {navController.navigate(Routes.nursesRoute) })},
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(contentColor)
         ) {
